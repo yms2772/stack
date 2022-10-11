@@ -44,3 +44,6 @@ func main() {
 	s.Clean()                       // Clean stack
 }
 ```
+
+# Benchmark
+![화면 캡처 2022-10-11 213549](https://user-images.githubusercontent.com/6222645/195091989-01769373-8ae2-48cf-b3b8-2344ec7f36f3.png)
