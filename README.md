@@ -14,9 +14,9 @@ func main() {
 	s := stack.New[int]()           // Create a new stack
 	                                // Available type:
 	                                // ~int | ~int8 | ~int16 | ~int32 | ~int64 
-									//~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr 
-									//~float32 | ~float64 
-									//~string
+					//~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr 
+					//~float32 | ~float64 
+					//~string
 	
 	s.Push(1)                       // Push data to the stack
 	
