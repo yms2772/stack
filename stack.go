@@ -15,6 +15,25 @@ func New[T constraints.Ordered]() Stack[T] {
 	}
 }
 
+// Clean stack
+func (s *stack[T]) Clean() {
+	s.data = s.data[:0]
+}
+
+// Empty stack
+func (s *stack[T]) Empty() (empty bool) {
+	return len(s.data) == 0
+}
+
+// Index stack
+func (s *stack[T]) Index(index int) (data T, err error) {
+	if index >= s.Size() {
+		return data, errors.New("overflow")
+	}
+
+	return s.data[index-1], nil
+}
+
 // Pop from stack
 func (s *stack[T]) Pop() (data T) {
 	if !s.Empty() {
@@ -27,16 +46,6 @@ func (s *stack[T]) Pop() (data T) {
 	return data
 }
 
-// Push to stack
-func (s *stack[T]) Push(data T) {
-	s.data = append(s.data, data)
-}
-
-// Clean stack
-func (s *stack[T]) Clean() {
-	s.data = s.data[:0]
-}
-
 // Peek from stack
 func (s *stack[T]) Peek() (data T) {
 	if !s.Empty() {
@@ -46,19 +55,20 @@ func (s *stack[T]) Peek() (data T) {
 	return data
 }
 
-// Empty stack
-func (s *stack[T]) Empty() (empty bool) {
-	if len(s.data) == 0 {
-		return true
-	}
+// Push to stack
+func (s *stack[T]) Push(data T) {
+	s.data = append(s.data, data)
+}
 
-	return false
+// Remove element of stack
+func (s *stack[T]) Remove(index int) {
+	s.data = append(s.data[:index], s.data[index+1:]...)
 }
 
 // Search stack
 func (s *stack[T]) Search(data T) (index int) {
 	if s.Empty() {
-		return -1
+		return 0
 	}
 
 	for i, item := range s.data {
@@ -67,7 +77,7 @@ func (s *stack[T]) Search(data T) (index int) {
 		}
 	}
 
-	return -1
+	return 0
 }
 
 // Size stack
@@ -76,26 +86,18 @@ func (s *stack[T]) Size() (length int) {
 }
 
 // Sort stack by string
-// default: ascending
+// Default: Ascending
 func (s *stack[T]) Sort(c ...comparator.Comparator) {
 	sort.Slice(s.data, func(i, j int) bool {
 		if len(c) != 0 {
-			if c[0] == comparator.ASC {
+			switch c[0] {
+			case comparator.ASC:
 				return s.data[i] < s.data[j]
-			} else if c[0] == comparator.DESC {
+			case comparator.DESC:
 				return s.data[i] > s.data[j]
 			}
 		}
 
 		return s.data[i] < s.data[j]
 	})
-}
-
-// Index stack
-func (s *stack[T]) Index(index int) (data T, err error) {
-	if index >= s.Size() {
-		return data, errors.New("overflow")
-	}
-
-	return s.data[index-1], nil
 }
