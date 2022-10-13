@@ -14,9 +14,9 @@ func main() {
 	s := stack.New[int]()           // Create a new stack
 	                                // Available type:
 	                                // ~int | ~int8 | ~int16 | ~int32 | ~int64 
-					// ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr 
-					// ~float32 | ~float64 
-					// ~string
+									//~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr 
+									//~float32 | ~float64 
+									//~string
 	
 	s.Push(1)                       // Push data to the stack
 	
@@ -40,10 +40,14 @@ func main() {
 
 	s.Pop()                         // Pop from the stack (erase the last index)
 	                                // Output: 1
+									
+	s.Push(4)
+	s.Push(5)
+	s.Push(6)
+	
+	s.Remove(1)                     // Remove stack from the stack
+	                                // Result: []int{4, 6}
 					                
 	s.Clean()                       // Clean stack
 }
 ```
-
-# Benchmark
-![화면 캡처 2022-10-11 213549](https://user-images.githubusercontent.com/6222645/195091989-01769373-8ae2-48cf-b3b8-2344ec7f36f3.png)

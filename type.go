@@ -19,4 +19,5 @@ type Stack[T constraints.Ordered] interface {
 	Size() (length int)
 	Sort(c ...comparator.Comparator)
 	Index(index int) (data T, err error)
+	Remove(index int)
 }

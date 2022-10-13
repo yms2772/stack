@@ -124,3 +124,17 @@ func TestStack_Index(t *testing.T) {
 		}
 	}
 }
+
+func TestStack_Remove(t *testing.T) {
+	s := stack.New[int]()
+	for i := 0; i < 100; i++ {
+		s.Push(i)
+	}
+
+	s.Remove(0)
+	s.Remove(98)
+
+	if s.Size() != 98 {
+		t.Errorf("stack.Size() = %d; want %d", s.Size(), 98)
+	}
+}
