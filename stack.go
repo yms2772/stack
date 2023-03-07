@@ -20,6 +20,11 @@ func (s *stack[T]) Clean() {
 	s.data = s.data[:0]
 }
 
+// Data is print all data
+func (s *stack[T]) Data() []T {
+	return s.data
+}
+
 // Empty stack
 func (s *stack[T]) Empty() (empty bool) {
 	return len(s.data) == 0

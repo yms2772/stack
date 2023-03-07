@@ -10,14 +10,15 @@ type stack[T constraints.Ordered] struct {
 }
 
 type Stack[T constraints.Ordered] interface {
+	Clean()
+	Data() []T
+	Empty() (empty bool)
+	Index(index int) (data T, err error)
+	Peek() (data T)
 	Pop() (data T)
 	Push(data T)
-	Clean()
-	Peek() (data T)
-	Empty() (empty bool)
+	Remove(index int)
 	Search(data T) (index int)
 	Size() (length int)
 	Sort(c ...comparator.Comparator)
-	Index(index int) (data T, err error)
-	Remove(index int)
 }
